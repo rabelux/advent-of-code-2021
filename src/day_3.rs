@@ -9,6 +9,8 @@ fn main() {
     assert_eq!(result_a, 3549854);
     let result_b = task_b(read_lines("input/day_3.txt"));
     assert_eq!(result_b, 3765399);
+    println!("task-a: {}, task-b: {}", result_a, result_b);
+
 }
 
 fn task_a(lines: impl Iterator<Item=String>) -> usize {
