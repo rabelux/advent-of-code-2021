@@ -10,3 +10,10 @@ pub fn read_lines<P>(filename: P) -> Map<Lines<BufReader<File>>, fn(std::io::Res
     io::BufReader::new(file).lines()
         .map(|s|s.expect("Failed reading line"))
 }
+
+pub fn read_usize_vec(lines: &mut impl Iterator<Item=String>) -> Vec<usize> {
+    lines.next().expect("input file invalid")
+        .split(",")
+        .map(|s|s.parse::<usize>().expect("parse failed"))
+        .collect()
+}

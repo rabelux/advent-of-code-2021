@@ -1,7 +1,7 @@
 mod lib;
 
 use std::usize;
-use crate::lib::read_lines;
+use crate::lib::{read_lines, read_usize_vec};
 
 fn main() {
     let result_a = task(read_lines("input/day_6.txt"), 80);
@@ -12,7 +12,7 @@ fn main() {
 }
 
 fn task(mut lines: impl Iterator<Item=String>, days: usize) -> usize {
-    let values = read_input(&mut lines);
+    let values = read_usize_vec(&mut lines);
     let mut gens: Vec<Generation> = vec![];
     (0..9).for_each(|i| gens.push((i, 0)));
     values.iter().for_each(|v| gens[*v].1+=1);
@@ -28,10 +28,3 @@ fn next_cycle(gen: &mut Vec<Generation>) {
 }
 
 type Generation = (usize, usize);
-
-fn read_input(lines: &mut impl Iterator<Item=String>) -> Vec<usize> {
-    lines.next().expect("input file invalid")
-        .split(",")
-        .map(|s|s.parse::<usize>().expect("parse failed"))
-        .collect()
-}
