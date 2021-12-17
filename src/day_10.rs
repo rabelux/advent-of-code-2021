@@ -7,7 +7,7 @@ fn main() {
     let result_a = task_a(read_lines("input/day_10.txt"));
     assert_eq!(216297, result_a);
     let result_b =  task_b(read_lines("input/day_10.txt"));
-    assert_eq!(847504, result_b);
+    assert_eq!(2165057169, result_b);
     println!("task-a: {}, task-b: {}", result_a, result_b);
 }
 
