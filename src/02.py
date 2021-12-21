@@ -1,7 +1,5 @@
 #!/usr/bin/python3
  
-import math
-
 pos_x = 0
 depth = 0
 aim = 0
