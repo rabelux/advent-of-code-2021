@@ -12,8 +12,10 @@ def main():
     
     #create vector with format [x1,y1,x2,y2]
     vector = [[int(s.replace(" -> ",",").split(",")[i]) for i in range(4)] for s in content]
-    red_vector = remove_diags(vector)
     
+    #red_vector = remove_diags(vector) ##part 1
+    red_vector = vector ##part 2
+
     x_max = max([max(i[0],i[2]) for i in red_vector])
     y_max = max([max(i[1],i[3]) for i in red_vector])
     xy_map = [[0] * (x_max + 1) for _ in range(y_max + 1)]
