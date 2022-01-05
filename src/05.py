@@ -6,7 +6,6 @@ def extend(x1,y1,x2,y2):
     return [(int(x1+i*(x2-x1)/a), int(y1+i*(y2-y1)/a)) for i in range(a+1)]
 
 def main():
-    boards = []
     with open("..\\input\\05.txt",'r') as textfile:
         content = textfile.readlines()
     
