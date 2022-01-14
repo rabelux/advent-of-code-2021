@@ -2,7 +2,7 @@
  
 import math
 
-with open("..\input\day_1.txt",'r') as textfile:
+with open("..\input\01.txt",'r') as textfile:
     str_content = textfile.readlines()
 int_content = [int(i) for i in str_content]
 
