@@ -6,47 +6,54 @@ def part1(stringlist):
                 cnt += 1
     return cnt
 
-def lookup7d():
-    return {frozenset("abcefg"):'0', frozenset("cf"):'1', frozenset("acdeg"):'2',\
-        frozenset("acdfg"):'3', frozenset("bcdf"):'4', frozenset("abdfg"):'5', frozenset("abdefg"):'6',\
-        frozenset("acf"):'7', frozenset("abcdefg"):'8', frozenset("abcdfg"):'9'}
-
 def part2(left, right):
-    lookuptable = lookup7d()
     int_res = []
     for i in range(len(left)):
         # assign values to variables
-        five_digits = []
-        six_digits = []
+        digit_2_3_5 = []
+        digit_0_6_9 = []
         for j in left[i]:
             if len(j) == 2:
-                one = set(j)
+                digit_1 = frozenset(j)
             elif len(j) == 3:
-                seven = set(j)
+                digit_7 = frozenset(j)
             elif len(j) == 4:
-                four = set(j)
+                digit_4 = frozenset(j)
             elif len(j) == 5: # 2, 3, 5
-                five_digits.append(set(j))
+                digit_2_3_5.append(frozenset(j))
             elif len(j) == 6: # 0, 6, 9
-                six_digits.append(set(j))
+                digit_0_6_9.append(frozenset(j))
             else:
-                eight = set(j)
-        # solve for segments
-        a = seven.difference(one).pop() # 7 - 1
-        for elem in five_digits:
-            if one < elem: # found number 3
-                b = four.difference(elem).pop() # 4 - 3
-                g = elem.difference(four, a).pop() # 3 - 4 - a
-                e = eight.difference(elem, b).pop() # 8 - 3 - b
-                break
-        d = four.difference(one, b).pop() # 4 - 1 - b
-        for elem in six_digits:
-            if not one < elem: # found 6
-                c = one.difference(elem).pop() # 1 - 6
-                break
-        f = one.difference(c).pop() # 1 - c
-        mytable = "".maketrans(a+b+c+d+e+f+g, 'abcdefg')
-        str_res = "".join([lookuptable.get(frozenset(s.translate(mytable))) for s in right[i]])
+                digit_8 = frozenset(j)
+        for digit in digit_2_3_5:
+            if digit_1 < digit:
+                digit_3 = digit
+            elif len(digit | digit_4) == 7:
+                digit_2 = digit
+            else:
+                digit_5 = digit
+        for digit in digit_0_6_9:
+            if not digit_1 < digit:
+                digit_6 = digit
+            elif digit_3 < digit:
+                digit_9 = digit
+            else:
+                digit_0 = digit
+        
+        lookup = {
+            digit_0:'0',
+            digit_1:'1',
+            digit_2:'2',
+            digit_3:'3',
+            digit_4:'4',
+            digit_5:'5',
+            digit_6:'6',
+            digit_7:'7',
+            digit_8:'8',
+            digit_9:'9'
+            }
+
+        str_res = "".join([lookup.get(frozenset(s)) for s in right[i]])
         int_res.append(int(str_res))
     return sum(int_res)
 
