@@ -7,7 +7,7 @@ def part1(stringlist):
     return cnt
 
 def part2(left, right):
-    int_res = []
+    int_res = 0
     segmcount2index = {2 : 1, 3 : 7, 4 : 4, 7: 8}
     for i in range(len(left)):
         digit_2_3_5 = []
@@ -39,8 +39,8 @@ def part2(left, right):
         
         lookup = dict(zip(digits,'0123456789'))
         str_res = "".join([lookup.get(frozenset(s)) for s in right[i]])
-        int_res.append(int(str_res))
-    return sum(int_res)
+        int_res += int(str_res)
+    return int_res
 
 def main():
     with open("..\\input\\08.txt",'r') as textfile:
