@@ -8,8 +8,7 @@ def compl_score(missing_chars):
     for i in missing_chars:
         score = 0
         for j in i:
-            score *= 5
-            score += lookup[j]
+            score = score * 5 + lookup[j]
         scores.append(score)
     scores.sort()
     return scores[int((len(scores) - 1) / 2)]
